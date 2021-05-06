@@ -9,14 +9,17 @@ set(SOURCE_PATH src)
 set(CMAKE_CXX_STANDARD 17) 
 set(CMAKE_BUILD_TYPE Release)
 
+add_link_options(-lSDL2 -lSDL2_image -lpthread)
+add_compile_options(-Ofast -Wall -Wextra)
+
+include_directories(${HEADER_PATH})
+
 set(PROGRAM sample)
 
 file(GLOB_RECURSE MODULE_SOURCE ${SOURCE_PATH}/*.cpp)
 
 # Add source to this project's executable.
 add_executable (${PROGRAM} ${MODULE_SOURCE})
-
-target_include_directories(${PROGRAM} PUBLIC ${HEADER_PATH})
 
 set_target_properties(${PROGRAM} PROPERTIES LINKER_LANGUAGE CXX)
 
